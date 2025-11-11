@@ -2,14 +2,12 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\Controller;
-
-class Home extends Controller
+class Home extends BaseController
 {
     public function index()
     {
-        return view('home', [
-            'title' => 'Beranda | UKM Medicom PNC'
+        return view('layout/template', [
+            'title' => 'Beranda'
         ]);
     }
 }

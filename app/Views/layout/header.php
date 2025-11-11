@@ -1,26 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= esc($title ?? 'UKM Medicom PNC') ?></title>
-    <link href="<?= base_url('output.css') ?>" rel="stylesheet">
-</head>
-<body class="bg-white text-gray-800">
-
-<!-- Navbar -->
-<nav class="flex justify-between items-center px-8 py-4 bg-white shadow fixed w-full top-0 z-50">
+<!-- Header Navbar -->
+<nav class="w-full border border-gray-300 flex items-center justify-between px-8 py-3 bg-white">
+    <!-- Logo -->
     <div class="flex items-center space-x-2">
-        <img src="<?= base_url('logo.png') ?>" alt="Logo" class="w-8 h-8">
-        <span class="font-semibold text-lg">Medicom</span>
+        <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" class="h-10">
+        <div class="text-xs leading-tight">
+            <span class="block font-medium text-blue-900">MediCom</span>
+            <span class="block text-[10px] text-gray-500">Politeknik Negeri Cilacap</span>
+        </div>
     </div>
-    <ul class="hidden md:flex space-x-8 font-medium">
-        <li><a href="/" class="hover:text-blue-600">Beranda</a></li>
-        <li><a href="#tentang" class="hover:text-blue-600">Tentang Kami</a></li>
-        <li><a href="#profil" class="hover:text-blue-600">Profil</a></li>
-        <li><a href="#laporan" class="hover:text-blue-600">Laporan Kinerja</a></li>
-    </ul>
-    <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Gabung</button>
-</nav>
 
-<div class="pt-24"></div>
+    <!-- Navigation Menu -->
+    <ul class="flex items-center space-x-8 font-semibold text-gray-800">
+        <li><a href="<?= base_url('/') ?>" class="hover:text-blue-600">Beranda</a></li>
+        <li><a href="<?= base_url('/tentang') ?>" class="hover:text-blue-600">Tentang Kami</a></li>
+        <li class="relative group">
+            <button class="flex items-center hover:text-blue-600 focus:outline-none">
+                Profil
+                <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <!-- Dropdown -->
+            <ul class="absolute hidden group-hover:block bg-white shadow-md rounded-md mt-2 py-2 w-40 border border-gray-100">
+                <li><a href="<?= base_url('/profil/tim') ?>" class="block px-4 py-2 hover:bg-gray-100">Tim Kami</a></li>
+                <li><a href="<?= base_url('/profil/visi-misi') ?>" class="block px-4 py-2 hover:bg-gray-100">Visi & Misi</a></li>
+            </ul>
+        </li>
+        <li><a href="<?= base_url('/laporan') ?>" class="hover:text-blue-600">Laporan Kinerja</a></li>
+    </ul>
+
+    <!-- Quiz Button -->
+    <a href="<?= base_url('/quiz') ?>" 
+       class="flex items-center gap-2 text-white font-semibold px-4 py-2 rounded-md"
+       style="background: linear-gradient(to right, #007BFF, #0026FF);">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M8 10h.01M12 10h.01M16 10h.01M9 16h6m2 4H7a2 2 0 01-2-2V6a2 2 0 012-2h4l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2z" />
+        </svg>
+        Quiz
+    </a>
+</nav>
