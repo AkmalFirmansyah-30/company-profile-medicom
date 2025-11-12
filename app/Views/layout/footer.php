@@ -3,7 +3,7 @@
         <!-- Kolom 1 -->
         <div class="flex flex-col space-y-3">
             <div class="flex items-center space-x-3">
-                <img src="<?= base_url('assets/img/logo.png') ?>" alt="Logo" class="h-12">
+                <img src="/src/img/logo/Group_280.png" alt="Logo" class="h-12">
                 <h3 class="text-lg font-bold">UKM Medicom PNC</h3>
             </div>
             <p class="text-sm leading-relaxed text-gray-100">
