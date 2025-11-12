@@ -237,7 +237,6 @@ class Admin extends BaseController
         $file = $this->request->getFile('division_image');
         $path = $this->uploadImage($file, '/divisi');
 
-        // Mapping warna dari Dropdown ke Class Tailwind
         $colorClass = 'bg-white text-gray-800'; // Default
         $selectedColor = $this->request->getPost('color');
         
@@ -257,7 +256,7 @@ class Admin extends BaseController
         return redirect()->to('/admin')->with('msg', 'Divisi berhasil ditambahkan');
     }
 
-    // --- FUNGSI BARU: Hapus Divisi ---
+    // Hapus Divisi
     public function deleteDivision($id)
     {
         $item = $this->divisionModel->find($id);
@@ -268,5 +267,52 @@ class Admin extends BaseController
             $this->divisionModel->delete($id);
         }
         return redirect()->to('/admin')->with('msg', 'Divisi berhasil dihapus');
+    }
+
+    // Tambah Program Kerja
+    public function addProgram()
+    {
+        // Validasi Input
+        if (!$this->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'program_image' => [
+                'rules' => 'uploaded[program_image]|max_size[program_image,2048]|is_image[program_image]|mime_in[program_image,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'uploaded' => 'Gambar program wajib diupload.',
+                    'max_size' => 'Ukuran gambar terlalu besar (maks 2MB).',
+                    'is_image' => 'File bukan gambar.',
+                    'mime_in' => 'Format harus JPG/PNG.'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/admin')->withInput()->with('validation', \Config\Services::validation());
+        }
+
+        $file = $this->request->getFile('program_image');
+        // Simpan di folder khusus 'programs' biar rapi
+        $path = $this->uploadImage($file, '/programs'); 
+
+        $this->programModel->save([
+            'title' => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'image_path' => $path
+        ]);
+
+        return redirect()->to('/admin')->with('msg', 'Program Kerja berhasil ditambahkan');
+    }
+
+    // Hapus Program Kerja
+    public function deleteProgram($id)
+    {
+        $program = $this->programModel->find($id);
+        if ($program) {
+            // Hapus file fisik
+            if ($program['image_path'] && file_exists(FCPATH . $program['image_path'])) {
+                unlink(FCPATH . $program['image_path']);
+            }
+            $this->programModel->delete($id);
+        }
+        return redirect()->to('/admin')->with('msg', 'Program Kerja berhasil dihapus');
     }
 }

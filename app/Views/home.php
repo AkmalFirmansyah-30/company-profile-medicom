@@ -74,9 +74,9 @@
     </p>
     <div class="grid grid-cols-3 gap-6 max-w-5xl mx-auto">
         <?php foreach($programs as $prog): ?>
-        <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="bg-white rounded-lg shadow-md p-4">
             <div class="w-full h-56 bg-gray-200 rounded-lg mb-4 overflow-hidden">
-                <img src="/src/img/programs/<?= $prog['image_path'] ?>" class="w-full h-full object-cover">
+                <img src="<?= $prog['image_path'] ?>" class="w-full h-full object-cover">
             </div>
             <h4 class="font-semibold mb-2"><?= $prog['title'] ?></h4>
             <p class="text-gray-600"><?= $prog['description'] ?></p>
@@ -86,7 +86,7 @@
 </section>
 
 <!-- Prestasi Kami -->
- <?php
+<?php
     $unique_years = [];
     if (!empty($achievements_by_year)) {
         $unique_years = array_unique(array_column($achievements_by_year, 'year'));
@@ -122,7 +122,7 @@
                 <div id="slider-<?= $year ?>" class="achievement-slider <?= $index === 0 ? '' : 'hidden' ?>">
                     
                     <div class="swiper swiper-<?= $year ?>">
-                        <div class="swiper-wrapper pb-12>
+                        <div class="swiper-wrapper pb-12">
                             
                             <?php 
                             if (isset($achievements_grouped[$year])):
