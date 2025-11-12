@@ -44,4 +44,6 @@ $routes->group('admin', ['filter' => 'auth'], function($routes) {
     $routes->get('deleteDivision/(:num)', 'Admin::deleteDivision/$1');
     $routes->post('addProgram', 'Admin::addProgram');
     $routes->get('deleteProgram/(:num)', 'Admin::deleteProgram/$1');
+    $routes->post('addPartner', 'Admin::addPartner');
+    $routes->get('deletePartner/(:num)', 'Admin::deletePartner/$1');
 });

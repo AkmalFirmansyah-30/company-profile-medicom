@@ -36,10 +36,9 @@
 <!-- Parther Kami -->
 <section id="partner" class="text-center pt-4 pb-10">
     <h3 class="text-2xl font-bold mb-6">Partner Kami</h3>
-    <div class="flex justify-center gap-12">
-        <?php foreach($partners as $p): ?>
-            <div class="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
-                <img src="/src/img/partner<?= $p['image_path'] ?>" alt="<?= $p['name'] ?>" class="w-full h-full object-contain">
+    <div class="flex justify-center gap-12 flex-wrap"> <?php foreach($partners as $p): ?>
+            <div class="w-32 h-32 bg-gray-200 rounded-lg overflow-hidden p-2 flex items-center justify-center">
+                <img src="<?= $p['image_path'] ?>" alt="<?= $p['name'] ?>" class="w-full h-full object-contain">
             </div>
         <?php endforeach; ?>
     </div>

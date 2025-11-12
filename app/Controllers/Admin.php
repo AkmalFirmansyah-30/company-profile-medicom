@@ -315,4 +315,48 @@ class Admin extends BaseController
         }
         return redirect()->to('/admin')->with('msg', 'Program Kerja berhasil dihapus');
     }
+
+    // MENGELOLA PARTNER
+    public function addPartner()
+    {
+        // Validasi
+        if (!$this->validate([
+            'name' => 'required',
+            'partner_image' => [
+                'rules' => 'uploaded[partner_image]|max_size[partner_image,1024]|is_image[partner_image]|mime_in[partner_image,image/jpg,image/jpeg,image/png,image/webp]',
+                'errors' => [
+                    'uploaded' => 'Logo partner wajib diupload.',
+                    'max_size' => 'Ukuran logo terlalu besar (max 1MB).',
+                    'is_image' => 'File bukan gambar.',
+                    'mime_in' => 'Format harus JPG/PNG/WEBP.'
+                ]
+            ]
+        ])) {
+            return redirect()->to('/admin')->withInput()->with('validation', \Config\Services::validation());
+        }
+
+        $file = $this->request->getFile('partner_image');
+        // Simpan di folder khusus 'partners'
+        $path = $this->uploadImage($file, '/partners'); 
+
+        $this->partnerModel->save([
+            'name' => $this->request->getPost('name'),
+            'image_path' => $path
+        ]);
+
+        return redirect()->to('/admin')->with('msg', 'Partner berhasil ditambahkan');
+    }
+
+    public function deletePartner($id)
+    {
+        $partner = $this->partnerModel->find($id);
+        if ($partner) {
+            // Hapus file fisik
+            if ($partner['image_path'] && file_exists(FCPATH . $partner['image_path'])) {
+                unlink(FCPATH . $partner['image_path']);
+            }
+            $this->partnerModel->delete($id);
+        }
+        return redirect()->to('/admin')->with('msg', 'Partner berhasil dihapus');
+    }
 }

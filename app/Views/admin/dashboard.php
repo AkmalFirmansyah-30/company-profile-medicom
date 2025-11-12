@@ -40,6 +40,48 @@
         </form>
     </div>
 
+    <!-- KELOLA PARTNER -->
+    <div class="bg-white p-6 rounded shadow mb-8">
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Kelola Partner</h2>
+
+        <form action="/admin/addPartner" method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4 mb-6 items-start">
+            <?= csrf_field() ?>
+            
+            <div class="w-full md:w-1/3">
+                <input type="text" name="name" placeholder="Nama Partner / Instansi" class="border p-2 rounded w-full <?= (session('validation') && session('validation')->hasError('name')) ? 'border-red-500' : '' ?>" value="<?= old('name') ?>" required>
+                <?php if (session('validation') && session('validation')->hasError('name')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('name') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="w-full md:w-1/3">
+                <input type="file" name="partner_image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 <?= (session('validation') && session('validation')->hasError('partner_image')) ? 'border-red-500' : '' ?>" required/>
+                <?php if (session('validation') && session('validation')->hasError('partner_image')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('partner_image') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Tambah</button>
+        </form>
+
+        <h3 class="text-lg font-semibold mb-3">Daftar Partner</h3>
+        <div class="flex flex-wrap gap-6">
+            <?php foreach($partners as $p): ?>
+                <div class="w-32 h-32 bg-gray-100 rounded-lg p-2 relative group border flex items-center justify-center">
+                    <img src="<?= $p['image_path'] ?>" alt="<?= $p['name'] ?>" class="max-w-full max-h-full object-contain">
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center p-1 opacity-0 group-hover:opacity-100 transition-opacity truncate">
+                        <?= $p['name'] ?>
+                    </div>
+
+                    <div class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="/admin/deletePartner/<?= $p['id'] ?>" class="bg-red-600 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold" onclick="return confirm('Hapus partner ini?')">X</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
     <!-- MODIFIKASI PRESTASI -->
     <div class="bg-white p-6 rounded shadow mb-8">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">Tambah Prestasi</h2>
