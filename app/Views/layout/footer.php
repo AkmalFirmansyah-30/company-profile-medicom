@@ -17,7 +17,7 @@
             <h4 class="font-semibold text-lg mb-3">Quick Links</h4>
             <ul class="space-y-2 text-sm">
                 <li><a href="<?= base_url('/') ?>" class="hover:underline">🏠 Beranda</a></li>
-                <li><a href="<?= base_url('/tentang') ?>" class="hover:underline">ℹ️ Tentang Kami</a></li>
+                <li><a href="<?= base_url('/about') ?>" class="hover:underline">ℹ️ Tentang Kami</a></li>
                 <li><a href="<?= base_url('/prestasi') ?>" class="hover:underline">🏅 Prestasi</a></li>
                 <li><a href="<?= base_url('/pengurus') ?>" class="hover:underline">👥 Pengurus</a></li>
             </ul>
