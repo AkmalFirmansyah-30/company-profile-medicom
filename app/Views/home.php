@@ -6,7 +6,9 @@
     <h2 class="text-2xl font-semibold">Unit Kegiatan Mahasiswa <span class="text-blue-600">Medicom</span></h2>
     <p class="text-gray-700">Politeknik Negeri Cilacap</p>
     <div class="flex justify-center my-6">
-        <div class="w-[90%] h-[380px] bg-gray-200 rounded-lg"></div>
+        <div class="w-[90%] h-[380px] bg-gray-200 rounded-lg">
+            <!-- <img src="/src/img/main.jpg" alt=""> -->
+        </div>
     </div>
 </section>
 
@@ -21,7 +23,9 @@
         <div><p class="text-3xl font-bold text-blue-600">200+</p><p>Total Anggota</p></div>
         <div><p class="text-3xl font-bold text-blue-600">7</p><p>Divisi</p></div>
     </div>
-    <button class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg">Selengkapnya</button>
+    <button class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg">
+        <a href="/about">Selengkapnya</a>
+    </button>
 </section>
 
 <!-- Parther Kami -->
