@@ -5,8 +5,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 p-8">
-
-    <h1 class="text-3xl font-bold mb-8 text-blue-800">Dashboard Admin Medicom</h1>
+    <div class="flex justify-between items-center mb-8">
+        <h1 class="text-3xl font-bold text-blue-800">Dashboard Admin Medicom</h1>
+        <div class="flex items-center gap-4">
+            <span class="text-gray-600">Halo, <?= session()->get('username') ?></span>
+            <a href="/logout" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold">
+                Logout
+            </a>
+        </div>
+    </div>
 
     <?php if (session()->getFlashdata('msg')): ?>
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
@@ -19,6 +26,7 @@
         </div>
     <?php endif; ?>
 
+    <!-- EDIT HERO IMAGE -->
     <div class="bg-white p-6 rounded shadow mb-8">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">Edit Hero Image</h2>
         <form action="/admin/updateHero" method="post" enctype="multipart/form-data">
@@ -32,6 +40,49 @@
         </form>
     </div>
 
+    <!-- KELOLA PARTNER -->
+    <div class="bg-white p-6 rounded shadow mb-8">
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Kelola Partner</h2>
+
+        <form action="/admin/addPartner" method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4 mb-6 items-start">
+            <?= csrf_field() ?>
+            
+            <div class="w-full md:w-1/3">
+                <input type="text" name="name" placeholder="Nama Partner / Instansi" class="border p-2 rounded w-full <?= (session('validation') && session('validation')->hasError('name')) ? 'border-red-500' : '' ?>" value="<?= old('name') ?>" required>
+                <?php if (session('validation') && session('validation')->hasError('name')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('name') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="w-full md:w-1/3">
+                <input type="file" name="partner_image" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 <?= (session('validation') && session('validation')->hasError('partner_image')) ? 'border-red-500' : '' ?>" required/>
+                <?php if (session('validation') && session('validation')->hasError('partner_image')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('partner_image') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Tambah</button>
+        </form>
+
+        <h3 class="text-lg font-semibold mb-3">Daftar Partner</h3>
+        <div class="flex flex-wrap gap-6">
+            <?php foreach($partners as $p): ?>
+                <div class="w-32 h-32 bg-gray-100 rounded-lg p-2 relative group border flex items-center justify-center">
+                    <img src="<?= $p['image_path'] ?>" alt="<?= $p['name'] ?>" class="max-w-full max-h-full object-contain">
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs text-center p-1 opacity-0 group-hover:opacity-100 transition-opacity truncate">
+                        <?= $p['name'] ?>
+                    </div>
+
+                    <div class="absolute top-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="/admin/deletePartner/<?= $p['id'] ?>" class="bg-red-600 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs font-bold" onclick="return confirm('Hapus partner ini?')">X</a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <!-- MODIFIKASI PRESTASI -->
     <div class="bg-white p-6 rounded shadow mb-8">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">Tambah Prestasi</h2>
         <form action="/admin/addAchievement" method="post" enctype="multipart/form-data" class="grid grid-cols-2 gap-4">
@@ -60,6 +111,7 @@
         </div>
     </div>
 
+    <!-- KELOLA GALERI KEGIATAN -->
     <div class="bg-white p-6 rounded shadow mb-8">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">Kelola Galeri Kegiatan</h2>
 
@@ -79,7 +131,6 @@
             <p class="text-red-500 text-sm mb-6">Anda telah mencapai batas maksimal 9 gambar galeri.</p>
         <?php endif; ?>
 
-
         <h3 class="text-lg font-semibold mb-3">Daftar Gambar Galeri (Total: <?= count($gallery) ?>)</h3>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             <?php foreach($gallery as $item): ?>
@@ -96,6 +147,7 @@
         </div>
     </div>
 
+    <!-- KELOLA DIVISI -->
     <div class="bg-white p-6 rounded shadow mb-8">
         <h2 class="text-xl font-bold mb-4 border-b pb-2">Kelola Divisi</h2>
                 
@@ -130,6 +182,55 @@
             <?php endforeach; ?>
         </div>
     </div>
-    
+
+    <!-- KELOLA PROGRAM KERJA -->
+    <div class="bg-white p-6 rounded shadow mb-8">
+        <h2 class="text-xl font-bold mb-4 border-b pb-2">Kelola Program Kerja</h2>
+
+        <form action="/admin/addProgram" method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <?= csrf_field() ?>
+            
+            <div class="col-span-2 md:col-span-1">
+                <input type="text" name="title" placeholder="Nama Program Kerja" class="w-full border p-2 rounded <?= (session('validation') && session('validation')->hasError('title')) ? 'border-red-500' : '' ?>" value="<?= old('title') ?>" required>
+                <?php if (session('validation') && session('validation')->hasError('title')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('title') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="col-span-2 md:col-span-1">
+                <input type="file" name="program_image" class="w-full border p-2 rounded <?= (session('validation') && session('validation')->hasError('program_image')) ? 'border-red-500' : '' ?>" required>
+                <?php if (session('validation') && session('validation')->hasError('program_image')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('program_image') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <div class="col-span-2">
+                <textarea name="description" rows="3" placeholder="Deskripsi singkat program kerja..." class="w-full border p-2 rounded <?= (session('validation') && session('validation')->hasError('description')) ? 'border-red-500' : '' ?>" required><?= old('description') ?></textarea>
+                <?php if (session('validation') && session('validation')->hasError('description')) : ?>
+                    <p class="text-red-500 text-xs mt-1"><?= session('validation')->getError('description') ?></p>
+                <?php endif; ?>
+            </div>
+
+            <button type="submit" class="md:col-span-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Tambah Program</button>
+        </form>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <?php foreach($programs as $prog): ?>
+            <div class="border rounded-lg overflow-hidden shadow hover:shadow-md transition bg-gray-50">
+                <div class="h-40 overflow-hidden bg-gray-200 relative group">
+                    <img src="<?= $prog['image_path'] ?>" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <a href="/admin/deleteProgram/<?= $prog['id'] ?>" class="bg-red-600 text-white px-3 py-1 rounded text-sm">Hapus</a>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h4 class="font-bold text-lg mb-1 text-gray-800"><?= $prog['title'] ?></h4>
+                    <p class="text-sm text-gray-600 line-clamp-3"><?= $prog['description'] ?></p>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
     </body>
 </html>
