@@ -3,96 +3,43 @@
 namespace App\Controllers;
 
 use App\Models\HeroModel;
-use App\Models\PageModel;
-use App\Models\ReportModel;
-use App\Models\MemberModel;
 use App\Models\PartnerModel;
 use App\Models\ProgramModel;
 use App\Models\GalleryModel;
 use App\Models\DivisionModel;
-use App\Models\ObjectiveModel;
 use App\Models\AchievementModel;
 
-class Admin extends BaseController {
-    protected $heroModel, $partnerModel, $programModel, $achievementModel, $galleryModel, $pageModel, $objectiveModel, $reportModel, $memberModel;
+class Admin extends BaseController
+{
+    protected $heroModel, $partnerModel, $programModel, $achievementModel, $galleryModel;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->heroModel = new HeroModel();
-        $this->pageModel = new PageModel();
-        $this->reportModel = new ReportModel();
-        $this->memberModel = new MemberModel();
         $this->partnerModel = new PartnerModel();
         $this->programModel = new ProgramModel();
+        $this->achievementModel = new AchievementModel();
         $this->galleryModel = new GalleryModel();
         $this->divisionModel = new DivisionModel();
-        $this->objectiveModel = new ObjectiveModel();
-        $this->achievementModel = new AchievementModel();
     }
 
-    // BERANDA PAGE
-
-    public function index() {
-        return redirect()->to('/admin/hero');
-    }
-
-    // Halaman Kelola Hero
-    public function hero() {
+    public function index()
+    {
         $data = [
             'hero' => $this->heroModel->first(),
-            'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/beranda/hero', $data);
-    }
-
-    // Halaman Kelola Partner
-    public function partners() {
-        $data = [
             'partners' => $this->partnerModel->findAll(),
-            'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/beranda/partners', $data);
-    }
-    
-    // Halaman Kelola Program Kerja
-    public function programs() {
-        $data = [
             'programs' => $this->programModel->findAll(),
-            'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/beranda/programs', $data);
-    }
-    
-    // Halaman Kelola Prestasi
-    public function achievements() {
-        $data = [
             'achievements' => $this->achievementModel->orderBy('year', 'DESC')->findAll(),
-            'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/beranda/achievements', $data);
-    }
-    
-    // Halaman Kelola Divisi
-    public function divisions() {
-        $data = [
+            'gallery' => $this->galleryModel->findAll(),
             'divisions' => $this->divisionModel->findAll(),
             'validation' => \Config\Services::validation(),
         ];
-        return view('admin/beranda/divisions', $data);
+        return view('admin/dashboard', $data);
     }
-    
-    // Halaman Kelola Galeri
-    public function gallery() {
-        $data = [
-            'gallery' => $this->galleryModel->findAll(),
-            'validation' => \Config\Services::validation(),
-        ];
-        return view('admin/beranda/gallery', $data);
-    }
-
-    // ==========================================================
 
     // --- Logic Upload Gambar ---
-    private function uploadImage($file, $subfolder = '') {
+    private function uploadImage($file, $subfolder = '')
+    {
         if ($file->isValid() && !$file->hasMoved()) {
             // Pindah ke public/src/img
             $newName = $file->getName();
@@ -104,17 +51,19 @@ class Admin extends BaseController {
     }
 
     // --- Update Hero ---
-    public function updateHero() {
+    public function updateHero()
+    {
         $file = $this->request->getFile('hero_image');
         if ($path = $this->uploadImage($file)) {
             $id = $this->request->getPost('id');
             $this->heroModel->save(['id' => $id, 'image_path' => $path]);
         }
-        return redirect()->to('/admin/hero')->with('msg', 'Hero updated');
+        return redirect()->to('/admin')->with('msg', 'Hero updated');
     }
 
     // --- Add Achievement (Contoh, lakukan hal serupa untuk Partner/Program/Gallery) ---
-    public function addAchievement() {
+    public function addAchievement()
+    {
         if (!$this->validate([
             'name' => 'required',
             'year' => 'required|numeric',
@@ -129,7 +78,7 @@ class Admin extends BaseController {
                 ]
             ]
         ])) {
-            return redirect()->to('/admin/achievements')->withInput()->with('validation', \Config\Services::validation());
+            return redirect()->to('/admin')->withInput()->with('validation', \Config\Services::validation());
         }
         
         $file = $this->request->getFile('image');
@@ -141,21 +90,23 @@ class Admin extends BaseController {
             'level' => $this->request->getPost('level'),
             'image_path' => $path ?? '/src/img/default.jpg'
         ]);
-        return redirect()->to('/admin/achievements')->with('msg', 'Tambah Prestasi Berhasil');
+        return redirect()->to('/admin')->with('msg', 'Tambah Prestasi Berhasil');
     }
     
     // Hapus Data
-    public function deleteAchievement($id) {
+    public function deleteAchievement($id)
+    {
         // Idealnya hapus juga file fisiknya menggunakan unlink()
         $this->achievementModel->delete($id);
-        return redirect()->to('/admin/achievements')->with('msg', 'Hapus Prestasi Berhasil');
+        return redirect()->to('/admin')->with('msg', 'Hapus Prestasi Berhasil');
     }
 
-    public function addGallery() {
+    public function addGallery()
+    {
         // Validasi: Maksimal 9 galeri
         $currentGalleryCount = $this->galleryModel->countAllResults();
         if ($currentGalleryCount >= 9) {
-            return redirect()->to('/admin/gallery')->with('error', 'Maksimal 9 gambar galeri telah tercapai.');
+            return redirect()->to('/admin')->with('error', 'Maksimal 9 gambar galeri telah tercapai.');
         }
 
         // Validasi input
@@ -182,14 +133,31 @@ class Admin extends BaseController {
                 'image_path' => $path,
                 'caption' => $this->request->getPost('caption')
             ]);
-            return redirect()->to('/admin/gallery')->with('msg', 'Gambar galeri berhasil ditambahkan.');
+            return redirect()->to('/admin')->with('msg', 'Gambar galeri berhasil ditambahkan.');
         } else {
-            return redirect()->to('/admin/gallery')->with('error', 'Gagal mengupload gambar galeri.');
+            return redirect()->to('/admin')->with('error', 'Gagal mengupload gambar galeri.');
         }
     }
 
+    // Menampilkan Form Edit Galeri (jika diperlukan halaman terpisah)
+    // Untuk simplicity, kita bisa edit langsung di dashboard dengan modal/dropdown
+    // Tapi jika butuh halaman terpisah:
+    public function editGallery($id)
+    {
+        $galleryItem = $this->galleryModel->find($id);
+        if (!$galleryItem) {
+            return redirect()->to('/admin')->with('error', 'Galeri tidak ditemukan.');
+        }
+        $data = [
+            'galleryItem' => $galleryItem,
+            'validation' => \Config\Services::validation()
+        ];
+        return view('admin/edit_gallery', $data); // Buat file view ini jika perlu
+    }
+
     // Update Galeri (mengganti gambar atau caption)
-    public function updateGallery() {
+    public function updateGallery()
+    {
         $id = $this->request->getPost('id');
         $oldItem = $this->galleryModel->find($id);
 
@@ -232,11 +200,12 @@ class Admin extends BaseController {
         }
 
         $this->galleryModel->save($dataToUpdate);
-        return redirect()->to('/admin/gallery')->with('msg', 'Galeri berhasil diperbarui.');
+        return redirect()->to('/admin')->with('msg', 'Galeri berhasil diperbarui.');
     }
 
     // Hapus Galeri
-    public function deleteGallery($id) {
+    public function deleteGallery($id)
+    {
         $galleryItem = $this->galleryModel->find($id);
         if ($galleryItem) {
             // Hapus file fisik jika ada
@@ -245,10 +214,11 @@ class Admin extends BaseController {
             }
             $this->galleryModel->delete($id);
         }
-        return redirect()->to('/admin/gallery')->with('msg', 'Gambar galeri berhasil dihapus.');
+        return redirect()->to('/admin')->with('msg', 'Gambar galeri berhasil dihapus.');
     }
 
-    public function addDivision() {
+    public function addDivision()
+    {
         if (!$this->validate([
             'name' => 'required',
             'color' => 'required',
@@ -261,7 +231,7 @@ class Admin extends BaseController {
                 ]
             ]
         ])) {
-            return redirect()->to('/admin/divisions')->withInput()->with('validation', \Config\Services::validation());
+            return redirect()->to('/admin')->withInput()->with('validation', \Config\Services::validation());
         }
 
         $file = $this->request->getFile('division_image');
@@ -283,11 +253,12 @@ class Admin extends BaseController {
             'color_class' => $colorClass
         ]);
 
-        return redirect()->to('/admin/divisions')->with('msg', 'Divisi berhasil ditambahkan');
+        return redirect()->to('/admin')->with('msg', 'Divisi berhasil ditambahkan');
     }
 
     // Hapus Divisi
-    public function deleteDivision($id) {
+    public function deleteDivision($id)
+    {
         $item = $this->divisionModel->find($id);
         if ($item) {
             if ($item['image_path'] && file_exists(FCPATH . $item['image_path'])) {
@@ -295,11 +266,12 @@ class Admin extends BaseController {
             }
             $this->divisionModel->delete($id);
         }
-        return redirect()->to('/admin/divisions')->with('msg', 'Divisi berhasil dihapus');
+        return redirect()->to('/admin')->with('msg', 'Divisi berhasil dihapus');
     }
 
     // Tambah Program Kerja
-    public function addProgram() {
+    public function addProgram()
+    {
         // Validasi Input
         if (!$this->validate([
             'title' => 'required',
@@ -327,11 +299,12 @@ class Admin extends BaseController {
             'image_path' => $path
         ]);
 
-        return redirect()->to('/admin/programs')->with('msg', 'Program Kerja berhasil ditambahkan');
+        return redirect()->to('/admin')->with('msg', 'Program Kerja berhasil ditambahkan');
     }
 
     // Hapus Program Kerja
-    public function deleteProgram($id) {
+    public function deleteProgram($id)
+    {
         $program = $this->programModel->find($id);
         if ($program) {
             // Hapus file fisik
@@ -340,11 +313,12 @@ class Admin extends BaseController {
             }
             $this->programModel->delete($id);
         }
-        return redirect()->to('/admin/programs')->with('msg', 'Program Kerja berhasil dihapus');
+        return redirect()->to('/admin')->with('msg', 'Program Kerja berhasil dihapus');
     }
 
     // MENGELOLA PARTNER
-    public function addPartner() {
+    public function addPartner()
+    {
         // Validasi
         if (!$this->validate([
             'name' => 'required',
@@ -358,7 +332,7 @@ class Admin extends BaseController {
                 ]
             ]
         ])) {
-            return redirect()->to('/admin/partners')->withInput()->with('validation', \Config\Services::validation());
+            return redirect()->to('/admin')->withInput()->with('validation', \Config\Services::validation());
         }
 
         $file = $this->request->getFile('partner_image');
@@ -370,10 +344,11 @@ class Admin extends BaseController {
             'image_path' => $path
         ]);
 
-        return redirect()->to('/admin/partners')->with('msg', 'Partner berhasil ditambahkan');
+        return redirect()->to('/admin')->with('msg', 'Partner berhasil ditambahkan');
     }
 
-    public function deletePartner($id) {
+    public function deletePartner($id)
+    {
         $partner = $this->partnerModel->find($id);
         if ($partner) {
             // Hapus file fisik
@@ -382,144 +357,6 @@ class Admin extends BaseController {
             }
             $this->partnerModel->delete($id);
         }
-        return redirect()->to('/admin/partners')->with('msg', 'Partner berhasil dihapus');
-    }
-
-    // ABOUT PAGE
-
-    public function about() {
-        $data = [
-            'page' => $this->pageModel->find('about'),
-            'objectives' => $this->objectiveModel->findAll(),
-            'validation' => \Config\Services::validation()
-        ];
-        return view('admin/about', $data);
-    }
-
-    public function updateAbout() {
-        $data = [
-            'page_slug' => 'about',
-            'hero_title' => $this->request->getPost('hero_title'),
-            'hero_description' => $this->request->getPost('hero_description'),
-            'main_title' => $this->request->getPost('main_title'),
-            'main_content' => $this->request->getPost('main_content'),
-            'video_url' => $this->request->getPost('video_url'),
-        ];
-        $this->pageModel->save($data);
-        return redirect()->to('/admin/about')->with('msg', 'Halaman About berhasil diperbarui.');
-    }
-
-    public function addObjective() {
-        $this->objectiveModel->save(['content' => $this->request->getPost('content')]);
-        return redirect()->to('/admin/about')->with('msg', 'Tujuan berhasil ditambahkan.');
-    }
-    
-    public function deleteObjective($id) {
-        $this->objectiveModel->delete($id);
-        return redirect()->to('/admin/about')->with('msg', 'Tujuan berhasil dihapus.');
-    }
-
-    // PRESTASI PAGE
-
-    public function prestasiPage() {
-        $data = [
-            'page' => $this->pageModel->find('prestasi'),
-            'validation' => \Config\Services::validation()
-        ];
-        return view('admin/prestasi_page', $data);
-    }
-
-    public function updatePrestasiPage() {
-        $data = [
-            'page_slug' => 'prestasi',
-            'hero_title' => $this->request->getPost('hero_title'),
-            'hero_description' => $this->request->getPost('hero_description'),
-        ];
-        $this->pageModel->save($data);
-        return redirect()->to('/admin/prestasiPage')->with('msg', 'Header Halaman Prestasi diperbarui.');
-    }
-
-    // MEMBER DIVISI PAGE
-
-    public function pengurus() {
-        $data = [
-            'divisions' => $this->divisionModel->findAll(),
-            'members'   => $this->memberModel->findAll(),
-            'validation'=> \Config\Services::validation()
-        ];
-        return view('admin/pengurus', $data);
-    }
-
-    public function addMember() {
-        if (!$this->validate([
-            'name' => 'required',
-            'member_image' => 'uploaded[member_image]|is_image[member_image]|max_size[member_image,2048]'
-        ])) {
-            return redirect()->back()->withInput()->with('validation', \Config\Services::validation());
-        }
-
-        $file = $this->request->getFile('member_image');
-        $path = $this->uploadImage($file, '/pengurus');
-
-        $this->memberModel->save([
-            'division_id' => $this->request->getPost('division_id'),
-            'name' => $this->request->getPost('name'),
-            'position' => $this->request->getPost('position'),
-            'image_path' => $path
-        ]);
-
-        return redirect()->to('/admin/pengurus')->with('msg', 'Pengurus berhasil ditambahkan.');
-    }
-
-    public function deleteMember($id) {
-        $member = $this->memberModel->find($id);
-        if ($member && file_exists(FCPATH . $member['image_path'])) {
-            unlink(FCPATH . $member['image_path']);
-        }
-        $this->memberModel->delete($id);
-        return redirect()->to('/admin/pengurus')->with('msg', 'Pengurus dihapus.');
-    }
-
-    // LAPORAN PAGE
-
-    public function laporan() {
-        $year = $this->request->getGet('year') ?? date('Y');
-        
-        $reports = $this->reportModel->where('year', $year)->findAll();
-        
-        $mappedReports = [];
-        foreach($reports as $r) {
-            $mappedReports[$r['month']] = $r['url'];
-        }
-
-        $data = [
-            'selected_year' => $year,
-            'reports' => $mappedReports,
-            'validation' => \Config\Services::validation()
-        ];
-        return view('admin/laporan', $data);
-    }
-
-    public function updateLaporan() {
-        $year = $this->request->getPost('year');
-        $months = $this->request->getPost('urls');
-
-        foreach ($months as $month => $url) {
-            $existing = $this->reportModel->where(['year' => $year, 'month' => $month])->first();
-            
-            if ($url) {
-                $data = [
-                    'year' => $year, 
-                    'month' => $month, 
-                    'url' => $url
-                ];
-                if ($existing) { $data['id'] = $existing['id']; }
-                $this->reportModel->save($data);
-            } elseif ($existing) {
-                // Jika URL dikosongkan tapi data ada di DB, hapus saja
-                $this->reportModel->delete($existing['id']);
-            }
-        }
-        return redirect()->to("/admin/laporan?year=$year")->with('msg', "Laporan tahun $year diperbarui.");
+        return redirect()->to('/admin')->with('msg', 'Partner berhasil dihapus');
     }
 }
