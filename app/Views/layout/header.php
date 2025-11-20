@@ -13,11 +13,13 @@
     <nav class="w-full border border-gray-300 flex items-center justify-between px-8 py-3 bg-white">
         <!-- Logo -->
         <div class="flex items-center space-x-2">
-            <img src="/src/img/logo/logo_Medicom_2_1.png" alt="Logo" class="h-10">
-            <div class="text-xs leading-tight">
+            <a href="/">
+                <img src="/src/img/logo/Logo Navbar.png" alt="Logo" class="h-10">
+            </a>
+            <!-- <div class="text-xs leading-tight">
                 <span class="block font-medium text-blue-900">MediCom</span>
                 <span class="block text-[10px] text-gray-500">Politeknik Negeri Cilacap</span>
-            </div>
+            </div> -->
         </div>
 
         <!-- Navigation Menu -->

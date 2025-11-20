@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Admin Dashboard - Medicom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom scrollbar untuk sidebar */
+        aside::-webkit-scrollbar { width: 4px; }
+        aside::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex overflow-hidden">
+
+    <aside class="w-64 bg-white shadow-xl z-10 flex flex-col h-full fixed md:relative hidden md:flex">
+        <div class="p-6 border-b flex items-center gap-2">
+            <div class="w-16 h-16 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                <img src="/src/img/logo/Group_280.png" alt="Logo" class="w-full h-full object-contain">
+            </div>
+            <h1 class="text-sm font-bold text-gray-800 tracking-tight">MEDICOM<span class="text-blue-600"> ADMIN</span></h1>
+        </div>
+
+        <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+            <p class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 mt-2">Menu Utama</p>
+            
+            <a href="/admin?page=hero" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'hero') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>🖼️</span> Hero Image
+            </a>
+            <a href="/admin?page=partner" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'partner') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>🤝</span> Partner
+            </a>
+            <a href="/admin?page=prestasi" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'prestasi') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>🏆</span> Prestasi
+            </a>
+            <a href="/admin?page=galeri" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'galeri') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>📸</span> Galeri
+            </a>
+            <a href="/admin?page=divisi" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'divisi') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>👥</span> Divisi
+            </a>
+            <a href="/admin?page=program" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors <?= ($activePage == 'program') ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm ring-1 ring-blue-200' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900' ?>">
+                <span>📋</span> Program Kerja
+            </a>
+        </nav>
+
+        <div class="p-4 border-t bg-gray-50">
+            <div class="flex items-center gap-3 mb-4 px-2">
+                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold">A</div>
+                <div class="overflow-hidden">
+                    <p class="text-sm font-semibold text-gray-700 truncate"><?= session()->get('username') ?></p>
+                    <p class="text-xs text-gray-500">Administrator</p>
+                </div>
+            </div>
+            <a href="/logout" class="flex items-center justify-center gap-2 w-full bg-white border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 px-4 py-2 rounded-lg text-sm font-semibold transition-all">
+                Logout
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden w-full relative">
+        
+        <header class="bg-white shadow-sm p-4 flex md:hidden justify-between items-center z-20">
+            <div class="font-bold text-blue-800">MEDICOM ADMIN</div>
+            <div class="text-sm">Menu ada di Desktop</div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-6 md:p-10">
+            
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 capitalize"><?= $activePage ?></h2>
+                    <p class="text-gray-500 mt-1">Kelola konten untuk bagian <?= $activePage ?></p>
+                </div>
+            </div>
+
+            <?php if (session()->getFlashdata('msg')): ?>
+                <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 shadow-sm rounded-r" role="alert">
+                    <p class="font-bold">Berhasil!</p>
+                    <p><?= session()->getFlashdata('msg') ?></p>
+                </div>
+            <?php endif; ?>
+            <?php if (session()->getFlashdata('error')): ?>
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 shadow-sm rounded-r" role="alert">
+                    <p class="font-bold">Error!</p>
+                    <p><?= session()->getFlashdata('error') ?></p>
+                </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'hero'): ?>
+            <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-lg font-semibold mb-4">Preview Gambar</h3>
+                        <div class="rounded-lg overflow-hidden border-2 border-dashed border-gray-300 p-2 bg-gray-50 flex items-center justify-center h-64">
+                            <?php if(!empty($hero['image_path'])): ?>
+                                <img src="<?= $hero['image_path'] ?>" class="max-h-full object-contain rounded">
+                            <?php else: ?>
+                                <span class="text-gray-400">Belum ada gambar</span>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-lg font-semibold mb-4">Upload Gambar Baru</h3>
+                        <form action="/admin/updateHero" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id" value="<?= $hero['id'] ?? '' ?>">
+                            <label class="block mb-4">
+                                <span class="sr-only">Choose File</span>
+                                <input type="file" name="hero_image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2.5 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"/>
+                            </label>
+                            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg shadow-blue-600/30">Simpan Perubahan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'partner'): ?>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-6">
+                        <h3 class="text-lg font-bold mb-4">Tambah Partner</h3>
+                        <form action="/admin/addPartner" method="post" enctype="multipart/form-data">
+                            <?= csrf_field() ?>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Partner</label>
+                                <input type="text" name="name" class="w-full border-gray-300 border rounded-lg p-2.5 focus:ring-blue-500 focus:border-blue-500" placeholder="Contoh: Google" required>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Logo Partner</label>
+                                <input type="file" name="partner_image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required/>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700">Tambah</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="lg:col-span-2">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                        <h3 class="text-lg font-bold mb-4">Daftar Partner</h3>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                            <?php foreach($partners as $p): ?>
+                                <div class="border rounded-lg p-4 relative group hover:shadow-md transition bg-white flex items-center justify-center h-32">
+                                    <img src="<?= $p['image_path'] ?>" class="max-h-20 max-w-full object-contain">
+                                    <a href="/admin/deletePartner/<?= $p['id'] ?>" class="absolute top-2 right-2 bg-red-100 text-red-600 p-1.5 rounded-full hover:bg-red-600 hover:text-white transition opacity-0 group-hover:opacity-100" onclick="return confirm('Hapus?')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                    </a>
+                                    <div class="absolute bottom-2 left-0 right-0 text-center text-xs text-gray-500 font-medium opacity-0 group-hover:opacity-100 transition"><?= $p['name'] ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'prestasi'): ?>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
+                <h3 class="text-lg font-bold mb-4">Tambah Data Prestasi</h3>
+                <form action="/admin/addAchievement" method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lomba</label>
+                            <input type="text" name="name" class="w-full border border-gray-300 rounded-lg p-2.5" required>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tahun</label>
+                                <input type="number" name="year" class="w-full border border-gray-300 rounded-lg p-2.5" placeholder="2024" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Tingkat</label>
+                                <input type="text" name="level" class="w-full border border-gray-300 rounded-lg p-2.5" placeholder="Nasional" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Foto Dokumentasi</label>
+                            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 bg-gray-50 text-center">
+                                <input type="file" name="image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required/>
+                            </div>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2.5 rounded-lg transition mt-2">Simpan Prestasi</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-50 text-gray-600 text-xs uppercase tracking-wider">
+                            <tr>
+                                <th class="p-4">Foto</th>
+                                <th class="p-4">Tahun</th>
+                                <th class="p-4">Nama Lomba</th>
+                                <th class="p-4">Tingkat</th>
+                                <th class="p-4 text-right">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <?php foreach($achievements as $item): ?>
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="p-4">
+                                    <img src="<?= $item['image_path'] ?>" class="h-12 w-12 object-cover rounded-lg border">
+                                </td>
+                                <td class="p-4 font-medium text-gray-900"><?= $item['year'] ?></td>
+                                <td class="p-4 text-gray-700"><?= $item['name'] ?></td>
+                                <td class="p-4 text-gray-500 text-sm"><?= $item['level'] ?></td>
+                                <td class="p-4 text-right">
+                                    <a href="/admin/deleteAchievement/<?= $item['id'] ?>" class="text-red-600 hover:text-red-900 text-sm font-medium" onclick="return confirm('Hapus?')">Hapus</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'galeri'): ?>
+            <div class="mb-8 bg-blue-50 p-4 rounded-lg border border-blue-100 flex justify-between items-center">
+                <div>
+                    <h4 class="font-bold text-blue-800">Status Galeri</h4>
+                    <p class="text-sm text-blue-600">Jumlah Foto: <strong><?= count($gallery) ?></strong> / 9 Maksimal</p>
+                </div>
+                <?php if (count($gallery) < 9): ?>
+                    <span class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full font-bold">Bisa Tambah</span>
+                <?php else: ?>
+                    <span class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full font-bold">Penuh</span>
+                <?php endif; ?>
+            </div>
+
+            <?php if (count($gallery) < 9): ?>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
+                <form action="/admin/addGallery" method="post" enctype="multipart/form-data" class="flex flex-col md:flex-row gap-4 items-end">
+                    <?= csrf_field() ?>
+                    <div class="flex-1 w-full">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Upload Foto</label>
+                        <input type="file" name="gallery_image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required/>
+                    </div>
+                    <div class="flex-1 w-full">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Caption (Opsional)</label>
+                        <input type="text" name="caption" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Kegiatan seru...">
+                    </div>
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 font-semibold">Upload</button>
+                </form>
+            </div>
+            <?php endif; ?>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <?php foreach($gallery as $item): ?>
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden border group hover:shadow-md transition relative">
+                        <img src="<?= $item['image_path'] ?>" class="w-full h-48 object-cover">
+                        <div class="p-3">
+                            <p class="text-sm text-gray-600 truncate"><?= $item['caption'] ?? 'Tanpa Caption' ?></p>
+                        </div>
+                        <div class="absolute top-2 right-2">
+                            <a href="/admin/deleteGallery/<?= $item['id'] ?>" class="bg-white/90 text-red-600 p-2 rounded-full shadow hover:bg-red-600 hover:text-white transition" onclick="return confirm('Hapus?')">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                            </a>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'divisi'): ?>
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-8">
+                <h3 class="text-lg font-bold mb-4">Tambah Divisi Baru</h3>
+                <form action="/admin/addDivision" method="post" enctype="multipart/form-data" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <?= csrf_field() ?>
+                    <input type="text" name="name" placeholder="Nama Divisi" class="border p-2.5 rounded-lg w-full" required>
+                    <select name="color" class="border p-2.5 rounded-lg w-full bg-white" required>
+                        <option value="white">⚪ Tema Putih (Teks Hitam)</option>
+                        <option value="blue">🔵 Tema Biru (Teks Putih)</option>
+                        <option value="red">🔴 Tema Merah (Teks Putih)</option>
+                    </select>
+                    <input type="text" name="description" placeholder="Deskripsi Singkat" class="border p-2.5 rounded-lg w-full md:col-span-2">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Icon Divisi</label>
+                        <input type="file" name="division_image" class="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required>
+                    </div>
+                    <button type="submit" class="md:col-span-2 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 font-semibold">Tambah Divisi</button>
+                </form>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <?php foreach($divisions as $div): ?>
+                    <div class="<?= $div['color_class'] ?> p-6 rounded-xl shadow-md relative group flex flex-col items-center justify-center text-center border border-gray-100 h-40">
+                        <img src="<?= $div['image_path'] ?>" class="w-12 h-12 mb-3 object-contain">
+                        <h4 class="font-bold text-lg leading-tight"><?= $div['name'] ?></h4>
+                        <a href="/admin/deleteDivision/<?= $div['id'] ?>" class="absolute top-2 right-2 bg-black/20 hover:bg-black/50 text-white rounded-full p-1 w-6 h-6 flex items-center justify-center text-xs transition opacity-0 group-hover:opacity-100" onclick="return confirm('Hapus?')">✕</a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($activePage == 'program'): ?>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-6">
+                        <h3 class="text-lg font-bold mb-4">Tambah Program</h3>
+                        <form action="/admin/addProgram" method="post" enctype="multipart/form-data" class="space-y-4">
+                            <?= csrf_field() ?>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Nama Program</label>
+                                <input type="text" name="title" class="w-full border p-2.5 rounded-lg" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Gambar Cover</label>
+                                <input type="file" name="program_image" class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                                <textarea name="description" rows="4" class="w-full border p-2.5 rounded-lg" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-blue-600 text-white py-2.5 rounded-lg font-semibold hover:bg-blue-700">Simpan</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <?php foreach($programs as $prog): ?>
+                    <div class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition group">
+                        <div class="h-40 overflow-hidden bg-gray-100 relative">
+                            <img src="<?= $prog['image_path'] ?>" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                                <a href="/admin/deleteProgram/<?= $prog['id'] ?>" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold" onclick="return confirm('Hapus?')">Hapus</a>
+                            </div>
+                        </div>
+                        <div class="p-5">
+                            <h4 class="font-bold text-lg mb-2 text-gray-800"><?= $prog['title'] ?></h4>
+                            <p class="text-sm text-gray-600 line-clamp-3 leading-relaxed"><?= $prog['description'] ?></p>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            </div>
+    </main>
+
+</body>
+</html>
