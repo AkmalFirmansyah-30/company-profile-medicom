@@ -54,17 +54,20 @@
         color: #0066CC;
     }
 </style>
+
 <div class="bg-main-gradient min-h-[75vh] text-white pt-20 pb-40 flex items-center justify-center">
     <div class="container mx-auto px-4 max-w-7xl">
         <div class="flex justify-center">
             <div class="form-card w-full p-8 md:p-12 rounded-lg text-center mx-4">
                 <h2 class="text-3xl font-bold mb-8">ISI DATA</h2>
+
                 <?php if (session()->getFlashdata('error')): ?>
                     <div class="bg-red-500 text-white p-3 rounded-md mb-4 text-sm">
                         <?= session()->getFlashdata('error') ?>
                     </div>
                 <?php endif; ?>
-                <form action="<?= base_url('quiz/process') ?>" method="post">
+
+                <form action="<?= base_url('quiz/isidata') ?>" method="post">
                     <?= csrf_field() ?>
                     
                     <div class="mb-6">
@@ -74,17 +77,19 @@
                             id="nama_peserta" 
                             class="form-control" 
                             placeholder="Masukkan Nama Anda" 
+                            value="<?= old('nama_peserta') ?>"
                             required
                         >
                     </div>
 
-                    <a href="<?= base_url('quiz/pertanyaan') ?>" class="btn-quiz shadow-lg hover:shadow-xl">Mainkan Quiz &rarr;</a>
+                    <button type="submit" class="btn-start-quiz">Mulai Quiz &rarr;</button>
                 </form>
 
             </div>
         </div>
     </div>
 </div>
+
 <div class="bg-white">
     <div class="container mx-auto px-4 py-12 max-w-7xl">
         <h3 class="text-xl md:text-2xl font-semibold mb-4 text-gray-800">Keterangan :</h3>

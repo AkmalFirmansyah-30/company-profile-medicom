@@ -1,0 +1,116 @@
+ERROR - 2025-12-02 17:16:08 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php:202
+Stack trace:
+#0 D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php(202): mysqli->real_connect('localhost', 'root', '', 'medicom', 3306, '', 0)
+#1 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#3 D:\KULIAH\laragon\www\pweb2\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\KULIAH\laragon\www\pweb2\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\KULIAH\laragon\www\pweb2\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#6 D:\KULIAH\laragon\www\pweb2\app\Controllers\MainUsers.php(31): CodeIgniter\BaseModel->first()
+#7 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(933): App\Controllers\MainUsers->index()
+#8 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+#9 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\KULIAH\laragon\www\pweb2\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 D:\KULIAH\laragon\www\pweb2\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\KULIAH\laragon\www\pweb2\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\KULIAH\laragon\www\pweb2\system\rewrite.php(44): require_once('D:\\KULIAH\\larag...')
+#14 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php:246
+Stack trace:
+#0 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(419): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+#2 D:\KULIAH\laragon\www\pweb2\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#3 D:\KULIAH\laragon\www\pweb2\system\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+#4 D:\KULIAH\laragon\www\pweb2\system\BaseModel.php(715): CodeIgniter\Model->doFirst()
+#5 D:\KULIAH\laragon\www\pweb2\app\Controllers\MainUsers.php(31): CodeIgniter\BaseModel->first()
+#6 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(933): App\Controllers\MainUsers->index()
+#7 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+#8 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 D:\KULIAH\laragon\www\pweb2\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#10 D:\KULIAH\laragon\www\pweb2\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#11 D:\KULIAH\laragon\www\pweb2\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#12 D:\KULIAH\laragon\www\pweb2\system\rewrite.php(44): require_once('D:\\KULIAH\\larag...')
+#13 {main}
+CRITICAL - 2025-12-02 17:16:08 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+[Method: GET, Route: /]
+in SYSTEMPATH\Database\BaseConnection.php on line 465.
+ 1 SYSTEMPATH\Database\BaseConnection.php(614): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_hero`
+ LIMIT 1', [], false)
+ 3 SYSTEMPATH\Model.php(330): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(715): CodeIgniter\Model->doFirst()
+ 5 APPPATH\Controllers\MainUsers.php(31): CodeIgniter\BaseModel->first()
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->index()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+DEBUG - 2025-12-02 17:17:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:17:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:18:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:18:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:19:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:19:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:19:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:19:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:19:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:20:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:41:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:49:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-12-02 17:49:52 --> ErrorException: Undefined variable $skorBenar
+[Method: POST, Route: quiz/result]
+in APPPATH\Views\users\quiz_hasil.php on line 24.
+ 1 APPPATH\Views\users\quiz_hasil.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $skorBenar', 'D:\\KULIAH\\laragon\\www\\pweb2\\app\\Views\\users\\quiz_hasil.php', 24)
+ 2 SYSTEMPATH\View\View.php(226): include('D:\\KULIAH\\laragon\\www\\pweb2\\app\\Views\\users\\quiz_hasil.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('users/quiz_hasil', [], true)
+ 5 APPPATH\Controllers\QuizController.php(152): view('users/quiz_hasil', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\QuizController->hasilQuiz()
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\QuizController))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+DEBUG - 2025-12-02 17:51:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:51:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:52:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 17:53:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:02:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-12-02 18:03:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

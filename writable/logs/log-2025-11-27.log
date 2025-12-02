@@ -76,3 +76,268 @@ WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
 12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
 13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
 14 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+ERROR - 2025-11-27 01:24:17 --> mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist in D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\KULIAH\laragon\www\pweb2\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\KULIAH\laragon\www\pweb2\system\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\KULIAH\laragon\www\pweb2\system\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+#6 D:\KULIAH\laragon\www\pweb2\app\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+#7 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+#8 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+#9 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\KULIAH\laragon\www\pweb2\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 D:\KULIAH\laragon\www\pweb2\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\KULIAH\laragon\www\pweb2\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\KULIAH\laragon\www\pweb2\system\rewrite.php(44): require_once('D:\\KULIAH\\larag...')
+#14 {main}
+CRITICAL - 2025-11-27 01:24:17 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+[Method: GET, Route: about]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 2 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 4 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:24:17 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 4 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 6 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:24:17 --> [Caused by] mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 5 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 7 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+ERROR - 2025-11-27 01:25:34 --> mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist in D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\KULIAH\laragon\www\pweb2\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\KULIAH\laragon\www\pweb2\system\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\KULIAH\laragon\www\pweb2\system\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+#6 D:\KULIAH\laragon\www\pweb2\app\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+#7 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+#8 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+#9 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\KULIAH\laragon\www\pweb2\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 D:\KULIAH\laragon\www\pweb2\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\KULIAH\laragon\www\pweb2\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\KULIAH\laragon\www\pweb2\system\rewrite.php(44): require_once('D:\\KULIAH\\larag...')
+#14 {main}
+CRITICAL - 2025-11-27 01:25:34 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+[Method: GET, Route: about]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 2 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 4 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:25:34 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 4 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 6 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:25:34 --> [Caused by] mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 5 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 7 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+ERROR - 2025-11-27 01:25:56 --> mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist in D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php:327
+Stack trace:
+#0 D:\KULIAH\laragon\www\pweb2\system\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *\nFROM `...', 0)
+#1 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 D:\KULIAH\laragon\www\pweb2\system\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 D:\KULIAH\laragon\www\pweb2\system\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 D:\KULIAH\laragon\www\pweb2\system\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+#5 D:\KULIAH\laragon\www\pweb2\system\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+#6 D:\KULIAH\laragon\www\pweb2\app\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+#7 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+#8 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+#9 D:\KULIAH\laragon\www\pweb2\system\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 D:\KULIAH\laragon\www\pweb2\system\Boot.php(363): CodeIgniter\CodeIgniter->run()
+#11 D:\KULIAH\laragon\www\pweb2\system\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+#12 D:\KULIAH\laragon\www\pweb2\public\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+#13 D:\KULIAH\laragon\www\pweb2\system\rewrite.php(44): require_once('D:\\KULIAH\\larag...')
+#14 {main}
+CRITICAL - 2025-11-27 01:25:56 --> CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+[Method: GET, Route: about]
+in SYSTEMPATH\Database\BaseConnection.php on line 684.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 2 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 4 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 5 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 6 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 7 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:25:56 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 332.
+ 1 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 2 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 4 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 6 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 7 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 8 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 9 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+12 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+13 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+CRITICAL - 2025-11-27 01:25:56 --> [Caused by] mysqli_sql_exception: Table 'medicom.cms_pages' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 327.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(327): mysqli->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(729): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(646): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = \'about\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `cms_pages`
+WHERE `cms_pages`.`page_slug` = :cms_pages.page_slug:', [...], false)
+ 5 SYSTEMPATH\Model.php(210): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(611): CodeIgniter\Model->doFind(true, 'about')
+ 7 APPPATH\Controllers\MainUsers.php(57): CodeIgniter\BaseModel->find('about')
+ 8 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->about()
+ 9 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+10 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+12 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+13 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+14 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+DEBUG - 2025-11-27 01:27:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+DEBUG - 2025-11-27 01:27:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 01:27:47 --> ErrorException: Undefined array key 0
+[Method: GET, Route: quiz/pertanyaan/1]
+in APPPATH\Views\users\quiz_pertanyaan_1.php on line 186.
+ 1 APPPATH\Views\users\quiz_pertanyaan_1.php(186): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array key 0', 'D:\\KULIAH\\laragon\\www\\pweb2\\app\\Views\\users\\quiz_pertanyaan_1.php', 186)
+ 2 SYSTEMPATH\View\View.php(226): include('D:\\KULIAH\\laragon\\www\\pweb2\\app\\Views\\users\\quiz_pertanyaan_1.php')
+ 3 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('users/quiz_pertanyaan_1', [], true)
+ 5 APPPATH\Controllers\MainUsers.php(182): view('users/quiz_pertanyaan_1', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->tampilkanPertanyaan('1')
+ 7 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 8 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
+DEBUG - 2025-11-27 01:34:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2025-11-27 01:34:16 --> ParseError: syntax error, unexpected token "endforeach", expecting end of file
+[Method: GET, Route: quiz/pertanyaan/1]
+in APPPATH\Views\users\quiz_pertanyaan_1.php on line 171.
+ 1 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1167): CodeIgniter\View\View->render('users/quiz_pertanyaan_1', [], true)
+ 3 APPPATH\Controllers\MainUsers.php(182): view('users/quiz_pertanyaan_1', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(933): App\Controllers\MainUsers->tampilkanPertanyaan('1')
+ 5 SYSTEMPATH\CodeIgniter.php(507): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\MainUsers))
+ 6 SYSTEMPATH\CodeIgniter.php(354): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 SYSTEMPATH\Boot.php(363): CodeIgniter\CodeIgniter->run()
+ 8 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 9 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+10 SYSTEMPATH\rewrite.php(44): require_once('D:\\KULIAH\\laragon\\www\\pweb2\\public\\index.php')
