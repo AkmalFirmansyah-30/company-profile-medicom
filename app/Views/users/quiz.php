@@ -1,7 +1,6 @@
 <?= $this->extend('layout/template') ?>
 <?= $this->section('content') ?>
 
-<!-- Hero Section: Mini Quiz UKM Medicom (Tampilan Awal) -->
 <section class="py-32 px-8 text-white text-center" style="background: linear-gradient(to bottom, #0a67b4, #0a2fa3);">
     <div class="container mx-auto max-w-4xl">
         
@@ -16,15 +15,14 @@
             volutpat eleifend
         </p>
 
-        <!-- Kotak Placeholder (Progress/Soal) -->
         <div class="flex justify-center space-x-4 mb-16">
-            <?php for ($i = 0; $i < 7; $i++): ?>
-                <div class="w-16 h-10 bg-white/30 border border-white rounded-lg"></div>
+            <?php for ($i = 284; $i < 292; $i++): ?>
+                <div class="w-14 h-14 bg-white/30 border border-white rounded-lg">
+                    <img src="/src/img/quiz/Group_<?= $i?>.png" alt="Icon <?= $i ?>" class="w-full h-full object-contain p-2">
+                </div>
             <?php endfor; ?>
         </div>
         
-        <!-- Tombol Mulai Quiz (Mengarahkan ke halaman /quiz/start) -->
-        <!-- Catatan: Pastikan Rute /quiz/start sudah didefinisikan di Routes.php dan MainUsers::startQuiz() -->
         <a href="<?= base_url('quiz/start') ?>" class="inline-block py-3 px-8 bg-white text-[#0a67b4] font-semibold text-lg rounded-full shadow-lg hover:bg-gray-100 transition duration-300">
             Mainkan Quiz →
         </a>

@@ -74,7 +74,7 @@
             <form action="<?= base_url('quiz/jawab/' . $nomorSoal) ?>" method="post">
                 <?= csrf_field() ?>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 height-full">
 
                     <?php
                     $opsi_labels = ['A', 'B', 'C', 'D'];
@@ -83,15 +83,7 @@
                     ?>
 
                     <div class="relative">
-                        <input 
-                            type="radio" 
-                            name="jawaban" 
-                            id="opsi_<?= $i ?>" 
-                            value="<?= esc($teksOpsi) ?>"
-                            class="opsi-input"
-                            <?= $isSelected ? 'checked' : '' ?>
-                        >
-
+                        <input type="radio" name="jawaban" id="opsi_<?= $i ?>" value="<?= esc($teksOpsi) ?>"class="opsi-input"<?= $isSelected ? 'checked' : '' ?>>
                         <label 
                             for="opsi_<?= $i ?>" 
                             class="opsi-label <?= $isSelected ? 'selected' : '' ?>"
@@ -104,12 +96,7 @@
                 </div>
 
                 <div class="text-center">
-                    <button 
-                        type="submit" 
-                        id="btnLanjut" 
-                        class="btn-lanjut <?= $jawabanTersimpan ? 'active' : '' ?>"
-                        <?= $jawabanTersimpan ? '' : 'disabled' ?>
-                    >
+                    <button type="submit" id="btnLanjut" class="btn-lanjut <?= $jawabanTersimpan ? 'active' : '' ?>"<?= $jawabanTersimpan ? '' : 'disabled' ?>>
                         Lanjut
                     </button>
                 </div>
