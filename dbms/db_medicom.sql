@@ -56,7 +56,7 @@ CREATE TABLE `cms_divisions` (
   `image_path` varchar(255) DEFAULT NULL,
   `color_class` varchar(50) DEFAULT 'bg-white text-gray-800',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `cms_divisions` (
 
 LOCK TABLES `cms_divisions` WRITE;
 /*!40000 ALTER TABLE `cms_divisions` DISABLE KEYS */;
-INSERT INTO `cms_divisions` VALUES (11,'BPH','KEGIATAN SEHARI HARI','/src/img/divisi/bagasbagas.png','bg-blue-500 text-white');
+INSERT INTO `cms_divisions` VALUES (11,'BPH','KEGIATAN SEHARI HARI','/src/img/divisi/bagasbagas.png','bg-blue-500 text-white'),(12,'Siceman','adsas','/src/img/divisi/Group 285.png','bg-white text-gray-800'),(13,'Divisi 2','Divisi 2','/src/img/divisi/Group 291.png','bg-white text-gray-800');
 /*!40000 ALTER TABLE `cms_divisions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,7 +114,7 @@ CREATE TABLE `cms_hero` (
 
 LOCK TABLES `cms_hero` WRITE;
 /*!40000 ALTER TABLE `cms_hero` DISABLE KEYS */;
-INSERT INTO `cms_hero` VALUES (1,'/src/img/bagasbagas.png','2025-11-14 21:20:33');
+INSERT INTO `cms_hero` VALUES (1,'/src/img/download.jpeg','2025-12-03 01:21:33');
 /*!40000 ALTER TABLE `cms_hero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -134,7 +134,7 @@ CREATE TABLE `cms_members` (
   PRIMARY KEY (`id`),
   KEY `division_id` (`division_id`),
   CONSTRAINT `cms_members_ibfk_1` FOREIGN KEY (`division_id`) REFERENCES `cms_divisions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -143,7 +143,7 @@ CREATE TABLE `cms_members` (
 
 LOCK TABLES `cms_members` WRITE;
 /*!40000 ALTER TABLE `cms_members` DISABLE KEYS */;
-INSERT INTO `cms_members` VALUES (5,11,'Ilham','Sekretaris','/src/img/pengurus/bagasbagas.png'),(6,11,'Bagas','Ketua','/src/img/pengurus/bagasbagas.png');
+INSERT INTO `cms_members` VALUES (5,11,'Ilham','Sekretaris','/src/img/pengurus/bagasbagas.png'),(6,11,'Bagas','Ketua','/src/img/pengurus/bagasbagas.png'),(7,11,'Wicak','Bendahara','/src/img/pengurus/Group 287.png');
 /*!40000 ALTER TABLE `cms_members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `cms_pages` (
 
 LOCK TABLES `cms_pages` WRITE;
 /*!40000 ALTER TABLE `cms_pages` DISABLE KEYS */;
-INSERT INTO `cms_pages` VALUES ('about','Tentang Kami','Deskripsi singkat tentang kami.','Apa itu Medicom?','Medicom adalah...','https://www.youtube.com/embed/video_id'),('prestasi','Prestasi Kami','Daftar pencapaian membanggakan kami.',NULL,NULL,NULL);
+INSERT INTO `cms_pages` VALUES ('about','Tentang Kami','Medicom adalah adalah adalah adalahadalahadalah','Apa itu Medicom?','Medicom adalah lorem ipsum dan lain lain','https://www.youtube.com/embed/c3mJxCZJruE?si=85PijZ3-IsbFqD-z'),('prestasi','Prestasi Kami','Daftar pencapaian membanggakan kami.',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `cms_pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +211,7 @@ CREATE TABLE `cms_partners` (
   `name` varchar(100) DEFAULT NULL,
   `image_path` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +220,7 @@ CREATE TABLE `cms_partners` (
 
 LOCK TABLES `cms_partners` WRITE;
 /*!40000 ALTER TABLE `cms_partners` DISABLE KEYS */;
-INSERT INTO `cms_partners` VALUES (3,'RRQ','/src/img/partners/download (2).jpg'),(4,'Bagas','/src/img/partners/bagasbagas.png');
+INSERT INTO `cms_partners` VALUES (3,'RRQ','/src/img/partners/download (2).jpg'),(4,'Bagas','/src/img/partners/bagasbagas.png'),(5,'Google','/src/img/partners/Group 289.png');
 /*!40000 ALTER TABLE `cms_partners` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +263,7 @@ CREATE TABLE `cms_reports` (
   `month` int(11) NOT NULL,
   `url` varchar(255) DEFAULT '#',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -272,7 +272,7 @@ CREATE TABLE `cms_reports` (
 
 LOCK TABLES `cms_reports` WRITE;
 /*!40000 ALTER TABLE `cms_reports` DISABLE KEYS */;
-INSERT INTO `cms_reports` VALUES (1,2024,1,'https://google.com'),(2,2025,1,'https://v3.tailwindcss.com/docs/text-color');
+INSERT INTO `cms_reports` VALUES (1,2024,1,'https://google.com'),(2,2025,1,'https://v3.tailwindcss.com/docs/text-color'),(3,2025,2,'https://protic.online/');
 /*!40000 ALTER TABLE `cms_reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -311,4 +311,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-27  8:00:25
+-- Dump completed on 2025-12-11  0:56:07

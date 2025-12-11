@@ -75,6 +75,24 @@ class MainUsers extends BaseController
         return view('users/pengurus', $data);
     }
 
+    public function proker1() {
+        return view('users/program-kerja/1', [
+            'title' => 'Proker1'
+        ]);
+    }
+
+    public function proker2() {
+        return view('users/program-kerja/2', [
+            'title' => 'Proker2'
+        ]);
+    }
+
+    public function proker3() {
+        return view('users/program-kerja/3', [
+            'title' => 'Proker3'
+        ]);
+    }
+
     public function laporan()
     {
         $reportModel = new ReportModel();
